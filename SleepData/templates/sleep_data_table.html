@@ -1,0 +1,78 @@
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Health Data</title>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <!-- Include Bootstrap CSS if you need it -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Sleep Health Data Table</h2>
+    <table id="dataTable" class="display">
+        <thead>
+            <tr>
+                <th>Person ID</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Occupation</th>
+                <th>Sleep Duration</th>
+                <th>Quality Sleep</th>
+                <th>Physical Activity Level</th>
+                <th>Stress Level</th>
+                <th>BMI Category</th>
+                <th>Blood Pressure</th>
+                <th>Heart Rate</th>
+                <th>Daily Steps</th>
+                <th>Sleep Disorder</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in data %}
+            <tr>
+                <td>{{ record.person_id }}</td>
+                <td>{{ record.gender }}</td>
+                <td>{{ record.age }}</td>
+                <td>{{ record.occupation }}</td>
+                <td>{{ record.sleep_duration }}</td>
+                <td>{{ record.quality_sleep }}</td>
+                <td>{{ record.physical_activity_level }}</td>
+                <td>{{ record.stress_level }}</td>
+                <td>{{ record.bmi_category }}</td>
+                <td>{{ record.blood_pressure }}</td>
+                <td>{{ record.heart_rate }}</td>
+                <td>{{ record.daily_steps }}</td>
+                <td>{{ record.sleep_disorder }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- DataTables JS -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#dataTable').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": "/data/", // make sure this URL matches where you're hosting the view for server-side processing
+        // Add other DataTable options as required.
+    });
+});
+</script>
+
+</body>
+</html>
+
+{% endblock %}
