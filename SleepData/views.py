@@ -4,7 +4,7 @@ from .models import SleepHealth
 from django.http import JsonResponse
 
 def import_csv_data():
-    # The path to your .csv file
+    # The path to .csv file
     file_path = "SleepHealthProject/Sleep_health_and_lifestyle_dataset.csv"
 
     # Use Python's csv module to read .csv data
@@ -14,19 +14,19 @@ def import_csv_data():
         # Loop through each row in the .csv and create a SleepHealth object
         for row in reader:
             sleep_health = SleepHealth(
-                person_id=row['Person ID'],
+                person_id=int(row['Person ID']),
                 gender=row['Gender'],
-                age=row['Age'],
+                age=int(row['Age']),
                 occupation=row['Occupation'],
                 sleep_duration=float(row['Sleep Duration']),
-                quality_sleep=row['Quality Sleep'] == 'True',
-                physical_activity_level=row['Physical Activity Level'],
+                quality_sleep=int(row['Quality Sleep']),
+                physical_activity_level=int(row['Physical Activity Level']),
                 stress_level=int(row['Stress Level']),
                 bmi_category=row['BMI Category'],
                 blood_pressure=row['Blood Pressure'],
                 heart_rate=int(row['Heart Rate']),
                 daily_steps=int(row['Daily Steps']),
-                sleep_disorder=row['Sleep Disorder'] == 'True'
+                sleep_disorder=row['Sleep Disorder']
             )
             sleep_health.save()
 
