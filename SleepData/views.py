@@ -4,6 +4,10 @@ from .models import SleepHealth
 from django.http import JsonResponse
 
 def import_csv_data():
+
+    if SleepHealth.objects.exists():
+        # If records exist, don't import the data again
+        return
     # The path to .csv file
     file_path = "SleepHealthProject/Sleep_health_and_lifestyle_dataset.csv"
 
@@ -19,7 +23,7 @@ def import_csv_data():
                 age=int(row['Age']),
                 occupation=row['Occupation'],
                 sleep_duration=float(row['Sleep Duration']),
-                quality_sleep=int(row['Quality Sleep']),
+                quality_sleep=int(row['Quality of Sleep']),
                 physical_activity_level=int(row['Physical Activity Level']),
                 stress_level=int(row['Stress Level']),
                 bmi_category=row['BMI Category'],
