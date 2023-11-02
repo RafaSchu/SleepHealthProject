@@ -50,7 +50,18 @@ def sleep_data_table(request):
         # Convert your data to the format DataTable expects
         data = [{
             'person_id': record.person_id,
-            # ... [include other fields]
+            'gender': record.gender,
+            'age': record.age,
+            'occupation': record.occupation,
+            'sleep_duration': record.sleep_duration,
+            'quality_sleep': record.quality_sleep,
+            'physical_activity_level': record.physical_activity_level,
+            'stress_level': record.stress_level,
+            'bmi_category': record.bmi_category,
+            'blood_pressure': record.blood_pressure,
+            'heart_rate': record.heart_rate,
+            'daily_steps': record.daily_steps,
+            'sleep_disorder': record.sleep_disorder,
         } for record in records]
 
         # Create the final response
