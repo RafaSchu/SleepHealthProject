@@ -16,7 +16,8 @@ $(document).ready(function() {
             {"data": "blood_pressure"},
             {"data": "heart_rate"},
             {"data": "daily_steps"},
-            {"data": "sleep_disorder"}
+            {"data": "sleep_disorder"},
+            {"data": "date_added"}
         ]
     });
 });

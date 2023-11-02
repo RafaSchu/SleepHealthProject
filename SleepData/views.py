@@ -2,6 +2,8 @@ import csv
 from django.shortcuts import render, redirect
 from .models import SleepHealth
 from django.http import JsonResponse
+import datetime
+import random
 
 def import_csv_data():
 
@@ -35,6 +37,14 @@ def import_csv_data():
             sleep_health.save()
 
 
+def random_date(start, end):
+    """
+    This function will return a random datetime between two datetime
+    objects.
+    """
+    return start + datetime.timedelta(seconds=random.randint(0, int((end - start).total_seconds())))
+
+
 def sleep_data_table(request):
     # Check if the request is for DataTable
     draw = request.GET.get('draw')
@@ -62,6 +72,7 @@ def sleep_data_table(request):
             'heart_rate': record.heart_rate,
             'daily_steps': record.daily_steps,
             'sleep_disorder': record.sleep_disorder,
+            'date_added': random_date(datetime.datetime(2020, 1, 1), datetime.datetime.now())
         } for record in records]
 
         # Create the final response
