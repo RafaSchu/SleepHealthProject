@@ -38,6 +38,7 @@
                 <th>Heart Rate</th>
                 <th>Daily Steps</th>
                 <th>Sleep Disorder</th>
+                <th>Date Added</th>
             </tr>
         </thead>
         <tbody>
@@ -56,6 +57,7 @@
                 <td>{{ record.heart_rate }}</td>
                 <td>{{ record.daily_steps }}</td>
                 <td>{{ record.sleep_disorder }}</td>
+                <td>{{ record.date_added|date:"d M Y H:i:s" }}</td>
             </tr>
             {% endfor %}
         </tbody>
