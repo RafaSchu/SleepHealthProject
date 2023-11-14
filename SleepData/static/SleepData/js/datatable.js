@@ -3,6 +3,7 @@ $(document).ready(function() {
         "processing": true,
         "serverSide": false,
         "ajax": "",
+        "ordering": true,
         "columns": [
             {"data": "person_id"},
             {"data": "gender"},
