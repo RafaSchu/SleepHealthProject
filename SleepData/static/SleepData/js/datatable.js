@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#dataTable').DataTable({
         "processing": true,
-        "serverSide": true,
+        "serverSide": false,
         "ajax": "",
         "columns": [
             {"data": "person_id"},
@@ -18,6 +18,24 @@ $(document).ready(function() {
             {"data": "daily_steps"},
             {"data": "sleep_disorder"},
             {"data": "date_added"}
-        ]
+        ],
+         initComplete: function() {
+            // Setup - add a text input to each footer cell
+            $('#dataTable tfoot th').each(function() {
+                var title = $(this).text();
+                $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+            });
+
+            // Apply the search
+            this.api().columns().every(function() {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change clear', function() {
+                    if (that.search() !== this.value) {
+                        that.search(this.value).draw();
+                    }
+                });
+            });
+        }
     });
 });
