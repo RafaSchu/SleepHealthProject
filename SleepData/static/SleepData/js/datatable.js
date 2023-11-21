@@ -1,10 +1,26 @@
 $(document).ready(function() {
-    $('#dataTable').DataTable({
+    function format(d) {
+        return (
+            '<dl>' +
+            '<dt>Gender:</dt><dd>' + d.gender + '</dd>' +
+            '<dt>BMI Category:</dt><dd>' + d.bmi_category + '</dd>' +
+            '<dt>Sleep Disorder:</dt><dd>' + d.sleep_disorder + '</dd>' +
+            '</dl>'
+        );
+    }
+
+    table = $('#dataTable').DataTable({
         "processing": true,
         "serverSide": false,
         "ajax": "",
         "ordering": true,
         "columns": [
+            {
+            "className": 'details-control', // Add this column for child row toggles
+            "orderable": false,
+            "data": null,
+            "defaultContent": '+'
+            },
             {"data": "person_id"},
             {"data": "gender"},
             {"data": "age"},
@@ -37,6 +53,20 @@ $(document).ready(function() {
                     }
                 });
             });
+        }
+    });
+
+    $('#dataTable tbody').on('click', 'td.details-control', function() {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+
+        if (row.child.isShown()) {
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
         }
     });
 });
