@@ -32,7 +32,8 @@ def import_csv_data():
                 blood_pressure=row['Blood Pressure'],
                 heart_rate=int(row['Heart Rate']),
                 daily_steps=int(row['Daily Steps']),
-                sleep_disorder=row['Sleep Disorder']
+                sleep_disorder=row['Sleep Disorder'],
+                date_added = random_date(datetime.datetime(2020, 1, 1), datetime.datetime.now())
             )
             sleep_health.save()
 
@@ -72,7 +73,7 @@ def sleep_data_table(request):
             'heart_rate': record.heart_rate,
             'daily_steps': record.daily_steps,
             'sleep_disorder': record.sleep_disorder,
-            'date_added': random_date(datetime.datetime(2020, 1, 1), datetime.datetime.now())
+            'date_added': record.date_added
         } for record in records]
 
         # Create the final response
