@@ -14,6 +14,7 @@ $(document).ready(function() {
         "serverSide": false,
         "ajax": "",
         "ordering": true,
+        "stateSave": true,
         "columns": [
             {
             "className": 'details-control', // Add this column for child row toggles
