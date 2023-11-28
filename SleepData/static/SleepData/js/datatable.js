@@ -34,7 +34,8 @@ $(document).ready(function() {
             {"data": "heart_rate"},
             {"data": "daily_steps"},
             {"data": "sleep_disorder"},
-            {"data": "date_added"}
+            {"data": "date_added",
+             "type": "date"}
         ],
          initComplete: function() {
             // Setup - add a text input to each footer cell
