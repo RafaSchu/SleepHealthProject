@@ -58,6 +58,16 @@ $(document).ready(function() {
         }
     });
 
+    // Add event listeners for toggling column visibility
+    document.querySelectorAll('a.toggle-vis').forEach((el) => {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            let columnIdx = this.getAttribute('data-column');
+            let column = table.column(columnIdx);
+            column.visible(!column.visible()); // Toggle visibility
+        });
+    });
+
     $('#dataTable tbody').on('click', 'td.details-control', function() {
         var tr = $(this).closest('tr');
         var row = table.row(tr);
